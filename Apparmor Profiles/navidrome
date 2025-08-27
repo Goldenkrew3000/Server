@@ -1,0 +1,25 @@
+# Last Modified: Wed Aug 27 23:37:50 2025
+abi <abi/4.0>,
+
+include <tunables/global>
+
+/services/navidrome/navidrome/navidrome {
+  include <abstractions/apache2-common>
+  include <abstractions/base>
+  include <abstractions/gio-open>
+  include <abstractions/ssl_certs>
+
+  /etc/hosts r,
+  /etc/mime.types r,
+  /etc/nsswitch.conf r,
+  /etc/resolv.conf r,
+  /ext/nvdrm-a/** r,					# Music directory
+  /proc/sys/net/core/somaxconn r,
+  /services/navidrome/navidrome/config_mine.toml r,	# Config file
+  /services/navidrome/navidrome/db_mine/** rwk,		# Database directory
+  /services/navidrome/navidrome/navidrome ix,		# Executable
+  /services/navidrome/navidrome/navidrome r,
+  /sys/kernel/mm/hugepages/ r,
+  /usr/share/ca-certificates/** r,
+  owner /services/navidrome/navidrome/db_mine/ r,	# Also database directory
+}
